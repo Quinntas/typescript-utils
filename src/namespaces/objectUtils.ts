@@ -7,4 +7,8 @@ export namespace ObjectUtils {
         if (typeof argument !== 'object') return false;
         return !ArrayUtils.isArray(argument);
     }
+
+    export function isEmpty(object: object): boolean {
+        return Object.keys(object).length === 0;
+    }
 }
