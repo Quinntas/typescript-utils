@@ -1,4 +1,4 @@
-export abstract class ValueObject<T = any> {
+export abstract class ValueObject<T> {
     private readonly name: string
     private value: T
 
@@ -17,7 +17,7 @@ export abstract class ValueObject<T = any> {
         return this.value
     }
 
-    set setValueWithValidation(value: T) {
+    set setWithValidation(value: T) {
         this.value = this.validate(value)
     }
 

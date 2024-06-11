@@ -1,2 +1,2 @@
-# typescript-utils
+# A collection of typescript utils
  

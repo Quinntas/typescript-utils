@@ -1,5 +1,6 @@
 import {forEach} from "../iterators";
 
+
 export class Dataclass {
     equals(other: Dataclass) {
         return this.toString() === other.toString()
