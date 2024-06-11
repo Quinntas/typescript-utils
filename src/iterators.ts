@@ -10,7 +10,7 @@ export function forEach<TElement>(array: TElement[], callback: (value: TElement,
     }
 }
 
-export function forEachReverse<TElement>(array: TElement[], callback: (value: TElement, index: number) => void) {
+export function forEachReverse<TElement>(array: TElement[] , callback: (value: TElement, index: number) => void) {
     for (let i = array.length - 1; i >= 0; i--) {
         callback(array[i], i);
     }
@@ -24,3 +24,13 @@ export function map<TElement, TResult>(array: TElement[], callback: (value: TEle
     });
     return result;
 }
+
+
+export function forEachGen<T>(gen: Generator<T>, callback: (value: T) => void) {
+    let val = gen.next();
+    while (!val.done) {
+        callback(val.value);
+        val = gen.next();
+    }
+}
+
