@@ -16,6 +16,67 @@ export function forEachReverse<TElement>(array: TElement[] , callback: (value: T
     }
 }
 
+export function reduce<TElement, TResult>(array: TElement[], callback: (acc: TResult, value: TElement, index: number) => TResult, initialValue: TResult): TResult {
+    let acc = initialValue;
+    for (let i = 0; i < array.length; i++) {
+        acc = callback(acc, array[i], i);
+    }
+    return acc;
+}
+
+export function filter<TElement>(array: TElement[], callback: (value: TElement, index: number) => boolean): TElement[] {
+    let result: TElement[] = [];
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i], i)) result.push(array[i]);
+    }
+    return result;
+}
+
+export function find<TElement>(array: TElement[], callback: (value: TElement, index: number) => boolean): TElement | undefined {
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i], i)) return array[i];
+    }
+    return undefined;
+}
+
+export function findIndex<TElement>(array: TElement[], callback: (value: TElement, index: number) => boolean): number {
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i], i)) return i;
+    }
+    return -1;
+}
+
+export function every<TElement>(array: TElement[], callback: (value: TElement, index: number) => boolean): boolean {
+    for (let i = 0; i < array.length; i++) {
+        if (!callback(array[i], i)) return false;
+    }
+    return true;
+}
+
+export function some<TElement>(array: TElement[], callback: (value: TElement, index: number) => boolean): boolean {
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i], i)) return true;
+    }
+    return false;
+}
+
+export function flatMap<TElement, TResult>(array: TElement[], callback: (value: TElement, index: number) => TResult[]): TResult[] {
+    let result: TResult[] = [];
+    for (let i = 0; i < array.length; i++) {
+        result.push(...callback(array[i], i));
+    }
+    return result;
+}
+
+export function mapToObject<TElement, TResult>(array: TElement[], callback: (value: TElement, index: number) => [string, TResult]): { [key: string]: TResult } {
+    let result: { [key: string]: TResult } = {};
+    for (let i = 0; i < array.length; i++) {
+        const [key, value] = callback(array[i], i);
+        result[key] = value;
+    }
+    return result;
+}
+
 export function map<TElement, TResult>(array: TElement[], callback: (value: TElement, index: number) => TResult): TResult[] {
     let result: TResult[] = [];
     forEach(array, (value, index) => {
