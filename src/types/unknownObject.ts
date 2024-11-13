@@ -1,3 +1,3 @@
 export type UnknownObject = {
-    [p: string | number]: unknown;
+    [p: PropertyKey]: unknown;
 };
